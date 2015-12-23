@@ -1,0 +1,21 @@
+---
+layout: feed
+---
+
+<section>
+	{% for post in site.posts %}
+			<div class="post">
+				<div class="post_header"><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></div>
+				<div class="post_info"> 
+					<div class="post_date">{{ post.date | date: "%b %-d, %Y" }}</div>
+					<div class="post_tags">
+<a class="post_tag" href="allprojects">C#</a> 
+<a class="post_tag" href="allprojects">arm</a> 
+<a class="post_tag" href="allprojects">stm32</a> 
+					</div>
+				</div>
+				<div class="post_preview">{{ post.content | strip_html | truncatewords:75}}</div>
+				<div class="post_read_more"><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">read more...</a></div>
+			</div>
+	{% endfor %}
+</section>
