@@ -8,10 +8,11 @@
 # Site settings
 title: Lyra's blog
 email: s.lyra@ya.ru
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+description: > # This is my simple blog.
+It's about electrotechnics, programming, art, ponies, opensource, linux and etc...
+Progrmming langs: C# Python C++ Bash
+Micricontroller types: stm32 avr arduino
+My mail: s.lyra@ya.ru
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://127.0.0.1:4000/" # the base hostname & protocol for your site
 github_username:  SL-RU
