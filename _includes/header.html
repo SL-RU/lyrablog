@@ -7,9 +7,9 @@
       </a>
       <nav>
         <ul class="top-menu">
-          <li class="active">BLOG</li>
-          <li><a href="/git/">GIT</a></li>
-          <li><a href="/about/">ABOUT</a></li>
+          <li {% if page.url != "/about/" %}class="active" {% endif %}><a  href="/">BLOG</a></li>
+          <li><a href="http://lyra.flutterpony.org:3000">GIT</a></li>
+          <li {% if page.url == "/about/" %}class="active" {% endif %}><a  href="/about/">ABOUT</a></li>
         </ul>
       </nav>
     </header>

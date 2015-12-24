@@ -176,10 +176,42 @@ aside  p {
 }
 
 
+.pc_header {
+  display: block;
+  overflow: hidden;
+  margin: 0px 0px;
+  width: 100%;
+  line-height: 70%;
+  background-color: #CBCBCB;
+}
+.pc_title {
+  width: 80%;
+  margin: 40px 50px;
+  font-size: 41px;
+}
+.pc_date {
+  
+  margin: 0px 97px;
+  display: inline-block;
+}
+.pc_tags {
+  margin: 0px 50px;
+  display: inline-block;
+}
+.pc {
+  margin: 20px 40px;
+  position: relative;
+  float: right;
+  width: 89%;
+  font-size: 16px;
+}
+
+
 /**
  * Syntax highlighting styles
  */
 .highlight {
+  font-size: 16px;
   background: #EAEAEA; }
   .highlighter-rouge .highlight {
     background: #eef; }

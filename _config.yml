@@ -8,11 +8,12 @@
 # Site settings
 title: Lyra's blog
 email: s.lyra@ya.ru
-description: > # This is my simple blog.
-It's about electrotechnics, programming, art, ponies, opensource, linux and etc...
-Progrmming langs: C# Python C++ Bash
-Micricontroller types: stm32 avr arduino
-My mail: s.lyra@ya.ru
+description: > 
+  This is my simple blog.
+  It's about electrotechnics, programming, art, ponies, opensource, linux and etc...
+  Progrmming langs: C# Python C++ Bash
+  Micricontroller types: stm32 avr arduino
+  My mail: s.lyra@ya.ru
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://127.0.0.1:4000/" # the base hostname & protocol for your site
 github_username:  SL-RU
