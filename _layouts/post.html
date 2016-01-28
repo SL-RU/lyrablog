@@ -9,10 +9,10 @@ layout: default
     {% if page.author %}
     	<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
     {% endif %}
-    <div class="pc_tags">
-		<a class="post_tag" href="allprojects">C#</a> 
-		<a class="post_tag" href="allprojects">arm</a> 
-		<a class="post_tag" href="allprojects">stm32</a> 
+	<div class="pc_tags">
+	  {% for tag in page.tags %}
+	  <a class="tags" href="/tags/{{ tag }}/">{{ tag }}</a>
+	  {% endfor %}
 	</div>
     </p>
   </header>

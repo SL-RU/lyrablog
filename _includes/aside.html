@@ -10,14 +10,10 @@
 
 
 Tags</pre>
-<a class="tags" href="allprojects">C++</a> 
-<a class="tags" href="allprojects">Python</a> 
-<a class="tags" href="allprojects">C#</a> 
-<a class="tags" href="allprojects">arm</a> 
-<a class="tags" href="allprojects">stm32</a> 
-<a class="tags" href="allprojects">avr</a>
-<a class="tags" href="allprojects">eng</a>
-<a class="tags" href="allprojects">rus</a>
-<a class="tags" href="allprojects">electonics</a>
+		{% for tag in site.tags %}
+		{% assign t = tag | first %}
+		{% assign posts = tag | last %}
+		<a class="tags" href="/tags/{{t | downcase | replace:" ","-" }}">{{t | downcase | replace:" ","-" }} - {{ posts | size }}</a>
+		{% endfor %}
 	</nav>	
 </aside>

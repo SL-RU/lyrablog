@@ -206,6 +206,11 @@ aside  p {
   font-size: 16px;
 }
 
+.tags_page_header {
+    font-family: Hack, monospace;
+    font-size: 50px;
+    line-height: 10%;
+}
 
 /**
  * Syntax highlighting styles
