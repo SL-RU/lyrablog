@@ -1,4 +1,4 @@
-body {	background-color: #e4e4e4; font-family: Hack, monospace;}
+body {	background-color: #e4e4e4; font-family: Hack, monospace; min-width: 1147px;}
 
 
 header {font-family: Hack, monospace;}
@@ -199,17 +199,21 @@ aside  p {
   display: inline-block;
 }
 .pc {
-  margin: 20px 40px;
+  margin: 0 auto;
   position: relative;
-  float: right;
+  
   width: 89%;
   font-size: 16px;
+  max-width: 1400px;
 }
-
 .tags_page_header {
     font-family: Hack, monospace;
     font-size: 50px;
     line-height: 10%;
+}
+
+.comment-hr {
+     margin: 30px -101px;
 }
 
 /**
@@ -247,8 +251,8 @@ aside  p {
     color: #000;
     background-color: #fdd; }
   .highlight .gd .x {
-    color: #000;
     background-color: #faa; }
+    color: #000;
   .highlight .ge {
     font-style: italic; }
   .highlight .gr {

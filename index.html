@@ -14,7 +14,7 @@ layout: feed
 					  {% endfor %}
 					</div>
 				</div>
-				<div class="post_preview">{{ post.content | strip_html | truncatewords:75}}</div>
+				<div class="post_preview">{{ post.excerpt }}</div>
 				<div class="post_read_more"><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">read more...</a></div>
 			</div>
 	{% endfor %}
