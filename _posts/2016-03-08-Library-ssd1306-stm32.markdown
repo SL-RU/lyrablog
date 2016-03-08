@@ -2,7 +2,7 @@
 layout: post
 title:  Блиблиотека OLED дисплея SSD1306 для STM32 микроконтроллеров
 date:   2016-03-08 20:21:45 +0300
-categories: jekyll update
+categories: stm32
 tags: stm32 oled rus hal
 ---
 
