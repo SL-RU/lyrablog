@@ -181,12 +181,12 @@ aside  p {
   overflow: hidden;
   margin: 0px 0px;
   width: 100%;
-  line-height: 70%;
+  line-height: 41px;
   background-color: #CBCBCB;
 }
 .pc_title {
   width: 80%;
-  margin: 40px 50px;
+  margin: 40px 50px 10px 50px;
   font-size: 41px;
 }
 .pc_date {
@@ -220,7 +220,8 @@ aside  p {
  * Syntax highlighting styles
  */
 .highlight {
-  font-size: 16px;
+  font-size: 14px;
+  width: 100%  
   background: #EAEAEA; }
   .highlighter-rouge .highlight {
     background: #eef; }
@@ -358,3 +359,35 @@ aside  p {
   .highlight .il {
     color: #099; }
 
+img[alt="pic"] { 
+  max-width:  300px; 
+  float: middle;
+  display: block;
+  margin: 0px 20px 15px 00px;
+}
+
+img[alt="img"] { 
+  max-width:  100%; 
+  float: middle;
+  display: block;
+  margin: 0px 20px 15px 00px;
+}
+
+table {
+    border-radius:0px;
+    border-spacing: 0px;
+    width: 50%;
+}
+table th {
+    border-bottom: 2px solid #212121;
+    border-collapse: collapse;
+    text-align: left;
+    padding-left: 20px;
+}
+table tr {
+}
+table td {
+    padding: 7px;
+    border-bottom: 1px solid #838383;
+    border-collapse: collapse;
+}

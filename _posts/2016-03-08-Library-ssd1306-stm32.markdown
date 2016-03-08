@@ -1,0 +1,109 @@
+---
+layout: post
+title:  Блиблиотека OLED дисплея SSD1306 для STM32 микроконтроллеров
+date:   2016-03-08 20:21:45 +0300
+categories: jekyll update
+tags: stm32 oled rus hal
+---
+
+Приветствую!
+
+[![pic](/img/ssd1306/connected-to-stm32.jpg)](/img/ssd1306/connected-to-stm32.jpg) Многие, наверное, знают о таких маленьких дешёвых (меньше $3) OLED дисплеях, которые можно найти в огромном ассортименте на ebay или aliexpress. В интернете существует множество различных статей о том, как подключать эти дисплеи к Arduino и другим МК, но для STM32f10x затруднительно найти даже библиотеку. Поэтому я решил написать этото тутоиал.
+
+<!-- more -->
+
+Данный дисплей имеет разрешение 128х64 пиксела и контроллер SSD1306, подклчается к микроконтроллеру по интерфейсу I2C.
+
+Для STM32 [была найдена библиотека для этого дисплея](http://stm32f4-discovery.com/2015/05/library-61-ssd1306-oled-i2c-lcd-for-stm32f4xx/), но она была для серии f4xx — необходимо было модифицировать для f10x и для драйверов HAL.
+
+Исходные коды моей модифицированной библиотеки и тестовый проект можно взять тут: http://github.com/SL-RU/stm32libs/tree/master/HAL/ssd1306
+
+Тестовый проект сделан в Keil при помощи программы STM32CubeMX.
+
+Видео работы: {% youtube L5MuP8ykXdY %}
+
+Конфигурация портов: [![img](/img/ssd1306/cubeMX.png)](/img/ssd1306/cubeMX.png)
+
+Подключение:
+
+| OLED pin 	| STM32    	|
+|----------	|----------	|
+| Vcc      	| +3.3v    	|
+| GND      	| GND      	|
+| SDA      	| I2C1_SDA 	|
+| SCL      	| I2C1_SCL 	|
+
+В CubeMX также необходимо сконфигурировать интерфейс I2C так: ![img](/img/ssd1306/i2c.png)
+
+Для работы с библиотекой нужно подключить заголовочный файл:
+{% highlight C %}
+#include "ssd1306.h"
+{% endhighlight %}
+
+И перед использованием инициализировать:
+{% highlight C %}
+SSD1306_Init();
+{% endhighlight %}
+
+Теперь можно что-нибудь нарисовать:
+{% highlight C %}
+SSD1306_GotoXY(0, 44); //Устанавливаем курсор в позицию 0;44. Сначала по горизонтали, потом вертикали.
+SSD1306_Puts("Hello world!!", &Font_7x10, SSD1306_COLOR_WHITE); //пишем надпись в выставленной позиции шрифтом "Font_7x10" белым цветом. 
+SSD1306_DrawCircle(10, 33, 7, SSD1306_COLOR_WHITE); //рисуем белую окружность в позиции 10;33 и радиусом 7 пикселей
+{% endhighlight %}
+
+Всё, что мы нарисовали сейчас находится в буффере в оперативной памяти МК, чтобы вывести всё на дисплей необходимо вызвать:
+{% highlight C %}
+SSD1306_UpdateScreen();
+{% endhighlight %}
+
+После этого наш дисплей обновится и будет выводить надпись и кружок. После вызова SSD1306_UpdateScreen() буффер в МК не сбрасывается сам, поэтому новые рисунки будут поверх предыдущих, для сброса можно заполнить всё чёрным цветом:
+{% highlight C %}
+SSD1306_Fill(SSD1306_COLOR_BLACK);
+{% endhighlight %}
+
+Все функции библиотеки:
+{% highlight C %}
+uint8_t SSD1306_Init(); //Инициализация
+
+SSD1306_UpdateScreen(); //Посылаем данные из буффера в памяти дисплею
+
+SSD1306_ToggleInvert(); //инвертирует цвета изображения в оперативной памяти
+
+SSD1306_Fill(SSD1306_COLOR_t Color); //заполняем дисплей желаемым цветом
+
+SSD1306_DrawPixel(uint16_t x, uint16_t y, SSD1306_COLOR_t color); //нарисовать один пиксел
+
+SSD1306_GotoXY(uint16_t x, uint16_t y); //установить позицию текстового курсора
+
+SSD1306_Putc(char ch, FontDef_t* Font, SSD1306_COLOR_t color); //вывести символ сh в позиции курсора
+
+SSD1306_Puts(char* str, FontDef_t* Font, SSD1306_COLOR_t color); //вывести строку str в позиции курсора
+
+SSD1306_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, SSD1306_COLOR_t c); //нарисовать линию
+
+SSD1306_DrawRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c); //наррисовать прямоугольник
+
+SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c); //заполненный прямоугольник
+
+SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color); //треугольник
+
+SSD1306_DrawCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c); //круг радиуса r
+
+SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c); //заполненный круг
+{% endhighlight %}
+
+Доступные шрифты, но вы так же можете добавить свои, в том числе и русские при помощи [этой программы](http://www.eran.io/the-dot-factory-an-lcd-font-and-image-generator/):
+
+* Font_7x10
+* Font_11x18
+* Font_16x26
+
+
+Дисплей работает довольно быстро(FPS около 14-18) на скорости I2C 400кГц(450кГц тоже без проблем, но с лагами не стал, а на 500 подтормаживает существенно) и без проблем.
+
+Тестовый проект для Keil IDE и саму библиотеку можно взять тут: https://github.com/SL-RU/stm32libs/tree/master/HAL/ssd1306
+
+
+P.S. В Keil после загрузки прошивки в МК он не сбрасывается. Для меня это ненадолго стало серьёзной проблемой, но я справился. Всё решается очень просто - этой галочкой:
+[![pic](/img/ssd1306/keil.png)](/img/ssd1306/keil.png)

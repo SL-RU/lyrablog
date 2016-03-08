@@ -1,3 +1,4 @@
+
 # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your whole blog, values
@@ -22,5 +23,8 @@ excerpt_separator: "<!-- more -->"
 
 
 # Build settings
-markdown: kramdown
+#markdown: kramdown
 
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
